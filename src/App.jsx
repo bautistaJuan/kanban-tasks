@@ -1,13 +1,14 @@
-// React imports
+// Material UI
 import { CssBaseline } from "@mui/material";
 import { ThemeProvider } from "@emotion/react";
 import theme from "./theme.js";
+// React imports
 import { Route, BrowserRouter, Routes } from "react-router-dom";
 import { useEffect } from "react";
 // Firebase imports
 import AuthScreen from "./pages/Auth/index.jsx";
-import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./firebase.js";
+import { onAuthStateChanged } from "firebase/auth";
 // Zustand
 import useStore from "./store.js";
 // Components
@@ -32,7 +33,7 @@ function App() {
   if (loader) return <Loader />;
   return (
     <>
-      {/* Envuelve todo el contenido de la aplicación dandole los estilos que definimos en theme.js */}
+      {/* Envuelve todo el contenido de la aplicación dandole los estilos que definimos en 'theme.js' */}
       <ThemeProvider theme={theme}>
         {/* Nos permite utilizar los estilos de material ui */}
         <CssBaseline />

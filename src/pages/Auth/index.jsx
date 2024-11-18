@@ -52,6 +52,7 @@ const AuthScreen = () => {
         await createUserWithEmailAndPassword(auth, form.email, form.password);
       }
     } catch (error) {
+      // msg la obtenemos del error de firebase. Podemos ver los errores en la consola del navegador.
       const msg = error.code.split("auth/")[1].split("-").join(" ");
       alert(msg);
       setIsLoading(false);
@@ -74,12 +75,14 @@ const AuthScreen = () => {
         <TextField
           value={form.email}
           name="email"
+          type="email"
           onChange={handleChange}
           label="Email"
         />
         <TextField
           value={form.password}
           name="password"
+          type="password"
           onChange={handleChange}
           label="Password"
         />

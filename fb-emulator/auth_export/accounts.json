@@ -1,1 +1,30 @@
-{"kind":"identitytoolkit#DownloadAccountResponse","users":[{"localId":"7nX1LDZiZ3DMf50TymuqcNVUFWIS","lastLoginAt":"1731622935919","displayName":"","photoUrl":"","emailVerified":false,"email":"test@gmail.com","salt":"fakeSaltqwfTxt9IZY3LDbUJ9YC1","passwordHash":"fakeHash:salt=fakeSaltqwfTxt9IZY3LDbUJ9YC1:password=123123","passwordUpdatedAt":1731618175046,"validSince":"1731618175","mfaInfo":[],"createdAt":"1731618175045","providerUserInfo":[{"providerId":"password","email":"test@gmail.com","federatedId":"test@gmail.com","rawId":"test@gmail.com","displayName":"","photoUrl":""}],"lastRefreshAt":"2024-11-14T23:22:25.219Z"}]}
+{
+  "kind": "identitytoolkit#DownloadAccountResponse",
+  "users": [
+    {
+      "localId": "7nX1LDZiZ3DMf50TymuqcNVUFWIS",
+      "lastLoginAt": "1731622935919",
+      "displayName": "",
+      "photoUrl": "",
+      "emailVerified": false,
+      "email": "test@gmail.com",
+      "salt": "fakeSaltqwfTxt9IZY3LDbUJ9YC1",
+      "passwordHash": "fakeHash:salt=fakeSaltqwfTxt9IZY3LDbUJ9YC1:password=123123",
+      "passwordUpdatedAt": 1731618175046,
+      "validSince": "1731618175",
+      "mfaInfo": [],
+      "createdAt": "1731618175045",
+      "providerUserInfo": [
+        {
+          "providerId": "password",
+          "email": "test@gmail.com",
+          "federatedId": "test@gmail.com",
+          "rawId": "test@gmail.com",
+          "displayName": "",
+          "photoUrl": ""
+        }
+      ],
+      "lastRefreshAt": "2024-11-14T23:22:25.219Z"
+    }
+  ]
+}

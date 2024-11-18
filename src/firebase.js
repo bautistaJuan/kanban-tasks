@@ -13,17 +13,17 @@ const firebaseConfig = {
   measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID,
 };
 
-// Initialize Firebase
+// Inicializamos Firebase para usar los servicios.
 export const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);
 export const auth = getAuth(app);
 export const fbFunctions = getFunctions(app);
 
-// Check if emulators should be connected
+// Verificar si se deben conectar los emuladores
 const useEmulator = import.meta.env.VITE_FIREBASE_USE_EMULATOR === "true";
 
 if (useEmulator) {
-  // Connect to emulators only if explicitly enabled
+  // Conectar a los emuladores solo si está habilitado explícitamente
   connectAuthEmulator(auth, import.meta.env.VITE_FIREBASE_AUTH_EMULATOR_URL);
 
   connectFirestoreEmulator(
