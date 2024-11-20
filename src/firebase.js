@@ -37,6 +37,5 @@ if (useEmulator) {
     import.meta.env.VITE_FIREBASE_FUNCTIONS_EMULATOR_HOST,
     Number(import.meta.env.VITE_FIREBASE_FUNCTIONS_EMULATOR_PORT)
   );
-
   console.log("Firebase Emulators Connected!");
 }

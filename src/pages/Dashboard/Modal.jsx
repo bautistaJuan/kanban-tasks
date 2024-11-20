@@ -22,6 +22,7 @@ const Modal = ({ closeModal }) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const handleCreateBoard = async () => {
+    if (!name) return null;
     try {
       setIsLoading(true);
       await createBoard({ name, color });
