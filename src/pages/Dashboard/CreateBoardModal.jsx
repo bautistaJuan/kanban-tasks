@@ -14,7 +14,7 @@ import { useState } from "react";
 import useApp from "../../hooks/useApp";
 
 // eslint-disable-next-line react/prop-types
-const Modal = ({ closeModal }) => {
+const CreateBoardModal = ({ closeModal }) => {
   const { createBoard } = useApp();
 
   const [name, setName] = useState("");
@@ -76,4 +76,4 @@ const Modal = ({ closeModal }) => {
   );
 };
 
-export default Modal;
+export default CreateBoardModal;
