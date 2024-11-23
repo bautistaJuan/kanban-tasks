@@ -12,6 +12,7 @@ import {
   createUserWithEmailAndPassword,
 } from "firebase/auth";
 import { auth } from "../../firebase";
+import useStore from "../../store";
 // Para setear el estado inicial de isLogin
 let initForm = {
   email: "",
@@ -22,6 +23,7 @@ const AuthScreen = () => {
   const [isLogin, setIsLogin] = useState(true); // Estado inicial para verificar que tipo de accion se esta realizando(login/register).
   const [isLoading, setIsLoading] = useState(false); // Estado para verificar si se esta cargando (lo usamos para deshabilitar el boton).
   const [form, setForm] = useState(initForm); // Data del usuario.
+  const { setToastMsg } = useStore(); // Para acceder a los datos del store
   const authText = isLogin ? "No tienes una cuenta?" : "Ya tienes una cuenta?"; // Cambia el estado de isLogin para saber si el usuario ya tiene una cuenta o no.
 
   /**
@@ -54,7 +56,7 @@ const AuthScreen = () => {
     } catch (error) {
       // msg la obtenemos del error de firebase. Podemos ver los errores en la consola del navegador.
       const msg = error.code.split("auth/")[1].split("-").join(" ");
-      alert(msg);
+      setToastMsg(msg);
       setIsLoading(false);
     }
   };

@@ -16,6 +16,8 @@ import Loader from "./components/layout/Loader.jsx";
 import Dashboard from "./pages/Dashboard/index.jsx";
 import PublicRoute from "./components/utils/PublicRoute.jsx";
 import PrivateRoute from "./components/utils/PrivateRoute.jsx";
+import SnackManager from "./components/layout/SnackManager.jsx";
+import BoardPage from "./pages/BoardScreen/index.jsx";
 // COMPONENT
 function App() {
   const { loader, setLoginStatus } = useStore();
@@ -37,6 +39,7 @@ function App() {
       <ThemeProvider theme={theme}>
         {/* Nos permite utilizar los estilos de material ui */}
         <CssBaseline />
+        <SnackManager />
         {/* Rutas */}
         <BrowserRouter>
           <Routes>
@@ -44,6 +47,10 @@ function App() {
             <Route
               path="/dashboard"
               element={<PrivateRoute Component={Dashboard} />}
+            />
+            <Route
+              path="/dashboard/:boardId"
+              element={<PrivateRoute Component={BoardPage} />}
             />
           </Routes>
         </BrowserRouter>

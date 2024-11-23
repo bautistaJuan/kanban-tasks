@@ -1,5 +1,8 @@
 import { AppBar, Toolbar, Button, Stack } from "@mui/material";
 import { Logout } from "@mui/icons-material";
+import { signOut } from "firebase/auth";
+import { auth } from "../../firebase";
+
 // eslint-disable-next-line react/prop-types
 const Topbar = ({ openModal }) => {
   return (
@@ -15,7 +18,9 @@ const Topbar = ({ openModal }) => {
             <Button variant="contained" color="primary" onClick={openModal}>
               Crear
             </Button>
-            <Button endIcon={<Logout />}>Salir</Button>
+            <Button onClick={() => signOut(auth)} endIcon={<Logout />}>
+              Salir
+            </Button>
           </Stack>
         </Toolbar>
       </AppBar>

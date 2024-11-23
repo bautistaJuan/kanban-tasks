@@ -19,6 +19,7 @@ const Dashboard = () => {
     // Si ya pedimos los boards, entonces ya tenemos la respuesta, así que podemos dejar de cargar
     else setIsLoading(false);
   }, []);
+  // Si la store no tiene boards, entonces mostramos el loader
   if (isLoading) return <Loader />;
   return (
     <>
@@ -27,8 +28,8 @@ const Dashboard = () => {
       {boards.length === 0 && <NoBoards />}
       <Stack px={3} mt={5}>
         <Grid2 container spacing={1}>
-          {boards.map(board => (
-            <BoardCard key={board.id} {...board} />
+          {boards.map((board, index) => (
+            <BoardCard key={index} {...board} />
           ))}
         </Grid2>
       </Stack>

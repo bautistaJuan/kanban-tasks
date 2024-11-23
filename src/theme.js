@@ -30,6 +30,30 @@ const theme = createTheme({
       fontWeight: "400",
     },
   },
+  components: {
+    MuiIconButton: {
+      defaultProps: {
+        size: "medium",
+      },
+    },
+    MuiSnackbar: {
+      defaultProps: {
+        anchorOrigin: { vertical: "top", horizontal: "center" },
+      },
+    },
+    MuiSnackbarContent: {
+      styleOverrides: {
+        root: {
+          backgroundColor: "#fff0bbbbb",
+        },
+        message: {
+          fontSize: "1rem",
+          color: "#ff0004",
+          transform: "capitalize",
+        },
+      },
+    },
+  },
   shape: {
     borderRadius: 0,
   },

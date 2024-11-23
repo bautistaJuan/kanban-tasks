@@ -5,8 +5,12 @@ const store = set => ({
   isLoggedIn: false,
   boards: [],
   isFetchedBoards: false,
+  toastMsg: "",
+  setToastMsg: msg => set({ toastMsg: msg }, false, "setToastMsg"),
   setBoards: boards =>
     set({ boards, isFetchedBoards: true }, false, "setBoards"),
+  addBoard: board =>
+    set(old => ({ boards: [board, ...old.boards] }), false, "addBoard"),
   setLoginStatus: isLoggedInStatus =>
     set(
       {

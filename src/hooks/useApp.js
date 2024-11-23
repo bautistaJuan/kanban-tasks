@@ -1,4 +1,11 @@
-import { collection, addDoc, onSnapshot } from "firebase/firestore";
+import {
+  collection,
+  addDoc,
+  serverTimestamp,
+  getDocs,
+  orderBy,
+  query,
+} from "firebase/firestore";
 import { db } from "../firebase";
 import { getAuth } from "firebase/auth";
 import useStore from "../store";
@@ -9,7 +16,7 @@ const useApp = () => {
     currentUser: { uid },
   } = getAuth();
   const boardsColRef = collection(db, `users/${uid}/boards`);
-  const { setBoards } = useStore();
+  const { setBoards, addBoard } = useStore();
   // createBoard es una hook que nos permite crear un board en la base de datos de firestore
   const createBoard = async ({ name, color }) => {
     // Esto crea automáticamente la colección si no existe, lo unico que tenemos que hacer es pasarle el nombre de la colección
@@ -22,7 +29,12 @@ const useApp = () => {
       await addDoc(boardsColRef, {
         name,
         color,
-        createdAt: new Date().toLocaleString("es-ES"),
+        createdAt: serverTimestamp(),
+      });
+      addBoard({
+        name,
+        color,
+        createdAt: new Date().toLocaleDateString("es-AR"),
       });
     } catch (error) {
       console.log(error);
@@ -31,27 +43,34 @@ const useApp = () => {
   };
 
   const fetchBoards = async isLoading => {
+    // Actualizamos el estado de carga en "/Dashboard/index.jsx" (donde se llama a esta función)
     try {
-      onSnapshot(
-        boardsColRef, // Referenciamos a la colección de boards
-        snapshot => {
-          // Traemos todos los documentos de la colección
-          const boards = snapshot.docs.map(doc => ({
-            ...doc.data(),
-            id: doc.id,
-          }));
-          setBoards(boards); // Actualizamos la store con los boards
-        },
-        error => {
-          console.error("Error listening to boards:", error);
-        }
-      );
-      // const querySnapshot = await getDocs(boardsColRef);
-      // const boards = querySnapshot.docs.map(doc => ({
-      //   ...doc.data(),
-      //   id: doc.id,
-      // }));
-      // setBoards(boards);
+      // Escuchamos los cambios en la colección boards
+      // onSnapshot(
+      //   boardsColRef, // Referenciamos a la colección de boards
+      //   snapshot => {
+      //     // Traemos todos los documentos de la colección
+      //     const boards = snapshot.docs.map(doc => ({
+      //       ...doc.data(),
+      //       id: doc.id,
+      //       createdAt: doc.data().createdAt
+      //         ? doc.data().createdAt.toDate().toLocaleDateString("es-AR")
+      //         : "Fecha no disponible",
+      //     }));
+      //     setBoards(boards); // Actualizamos la store con los boards
+      //   },
+      //   error => {
+      //     console.error("Error listening to boards:", error);
+      //   }
+      // );
+      const q = query(boardsColRef, orderBy("createdAt", "desc"));
+      const querySnapshot = await getDocs(q);
+      const boards = querySnapshot.docs.map(doc => ({
+        ...doc.data(),
+        id: doc.id,
+        createdAt: doc.data().createdAt.toDate().toLocaleDateString("es-AR"),
+      }));
+      setBoards(boards);
     } catch (err) {
       console.log(err);
     } finally {
